@@ -1,4 +1,4 @@
-class FriendshipsController < ApplicationController
+class Api::V1::FriendshipsController < Api::V1::ApplicationController
 
     def create
         Friendship.create!(friendship_params), status: 201

@@ -1,4 +1,4 @@
-class VideoPostsController < ApplicationController
+class Api::V1::VideoPostsController < Api::V1::ApplicationController
     def index
         render json: VideoPost.all, status: :ok
     end

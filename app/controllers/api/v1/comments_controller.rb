@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class Api::V1::CommentsController < Api::V1::ApplicationController
     before_action :find_comment, only: [:show, :create, :update, :destroy]
     def index
         render json: Comments.all, status: :ok

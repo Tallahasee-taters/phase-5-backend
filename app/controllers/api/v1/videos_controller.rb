@@ -1,4 +1,5 @@
-class VideosController < ApplicationController
+class Api::V1::VideosController < Api::V1::ApplicationController
+    
     def index
         render json: Video.all, status: 200
     end

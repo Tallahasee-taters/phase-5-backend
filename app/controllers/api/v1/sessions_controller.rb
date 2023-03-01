@@ -1,5 +1,5 @@
-class SessionsController < ApplicationController
-    skip_before_action :authorized_user, only: [:login]
+class Api::V1::SessionsController < Api::V1::ApplicationController
+    # skip_before_action :authorized_user, only: [:login]
     
     def login
         user = User.find_by(email: params[:email])

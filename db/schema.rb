@@ -16,10 +16,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_231033) do
 
   create_table "comments", force: :cascade do |t|
     t.string "text"
-    t.integer "upvote"
-    t.integer "downvote"
+    t.bigint "user_id"
+    t.bigint "video_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_comments_on_user_id"
+    t.index ["video_id"], name: "index_comments_on_video_id"
   end
 
   create_table "friendships", force: :cascade do |t|
@@ -41,26 +43,29 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_24_231033) do
   end
 
   create_table "video_posts", force: :cascade do |t|
-    t.string "header"
     t.bigint "user_id", null: false
     t.bigint "video_id", null: false
-    t.bigint "comments_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["comments_id"], name: "index_video_posts_on_comments_id"
     t.index ["user_id"], name: "index_video_posts_on_user_id"
     t.index ["video_id"], name: "index_video_posts_on_video_id"
   end
 
   create_table "videos", force: :cascade do |t|
+    t.string "header"
     t.string "title"
+    t.string "thumbnail_url"
+    t.string "video_url"
+    t.integer "upvote"
+    t.integer "downvote"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_videos_on_user_id"
   end
 
   add_foreign_key "friendships", "users", column: "reciever_id"
   add_foreign_key "friendships", "users", column: "sender_id"
-  add_foreign_key "video_posts", "comments", column: "comments_id"
   add_foreign_key "video_posts", "users"
   add_foreign_key "video_posts", "videos"
 end
