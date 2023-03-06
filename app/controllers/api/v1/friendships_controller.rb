@@ -11,4 +11,8 @@ class Api::V1::FriendshipsController < Api::V1::ApplicationController
         end
         render json: friend, status: 202
     end
+
+    def friendship_params
+        params.permit(:reciever, :sender, :status)
+     end
 end

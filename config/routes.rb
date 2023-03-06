@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :video_posts, only: [:index, :show, :create, :update, :destroy]
       resources :comments, only: [:index, :show, :create, :update, :destroy]
       resources :videos, only: [:index, :show, :update, :create, :destroy]
-      resources :users, only: [:update, :destroy, :create, :show]
+      resources :users, only: [:index, :update, :destroy, :create, :show]
       post '/login', to: 'sessions#login'
       delete 'logout', to: 'sessions#logout'
       get '/authorized_user', to: 'users#show'

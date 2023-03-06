@@ -27,6 +27,6 @@ class Api::V1::VideoPostsController < Api::V1::ApplicationController
     end
 
     def video_post_params
-        params.permit(:header, :user_id, :video_id, :comment_id) 
+        params.permit(:user_id, :video_id) 
     end
 end
