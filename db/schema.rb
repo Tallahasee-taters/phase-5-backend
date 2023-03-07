@@ -80,9 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_05_230955) do
   end
 
   create_table "videos", force: :cascade do |t|
-    t.string "header"
     t.string "title"
-    t.string "thumbnail_url"
     t.string "video_url"
     t.integer "upvote"
     t.integer "downvote"

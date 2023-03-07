@@ -1,6 +1,5 @@
 class Api::V1::UsersController < Api::V1::ApplicationController
-    before_action :find_user, only: [:update, :destroy]
-    # skip_before_action :authorized_user, only: [:create]
+    skip_before_action :authorized_user, only: [:create]
 
     def index 
         render json: User.all, status: 200

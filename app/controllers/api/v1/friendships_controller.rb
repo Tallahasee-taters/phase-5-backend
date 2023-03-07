@@ -1,11 +1,13 @@
 class Api::V1::FriendshipsController < Api::V1::ApplicationController
 
     def create
-        Friendship.create!(friendship_params), status: 201
+        Friendship.create!(friendship_params)
+        render json: @user, status: 201
     end
 
     def destroy
-        friend = Friendship.find(params[:id])
+        byebug
+        f = Friendship.new(params[:id])
         if firend.reciever == @current_user || friend.sender == @current_user
             friend.update(status: "rejected")
         end
@@ -13,6 +15,6 @@ class Api::V1::FriendshipsController < Api::V1::ApplicationController
     end
 
     def friendship_params
-        params.permit(:reciever, :sender, :status)
+        params.permit(:reciever_id, :sender_id, :status)
      end
 end

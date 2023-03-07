@@ -15,7 +15,7 @@ class User < ApplicationRecord
     
     has_many :recieved_friend_requests, class_name: "Friendship", foreign_key: :reciever_id, dependent: :destroy
 
-    def friendships
+    def friends
         friendships = Friendship.where(sender: self, status: "accepted").or(Friendship.where(reciever: self, status: "accepted"))
         friendships.map{|f| f.sender === self ? f.reciever : f.sender}
     end
