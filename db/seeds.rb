@@ -1,12 +1,12 @@
 response = HTTParty.get('https://store.steampowered.com/api/trailerslideshow/?cc=us&l=english')
 videos = response["movies"]
 
-u = User.new(username: "ConaldPeterson", email: "game@gmail.com", password: "password")
-u.avatar.attach(io: File.open('storage/'), filename: '')
+u = User.new(username: "ConaldPeterson", email: "game@gmail.com", password: "password" )
+u.avatar.attach(io: File.open('storage/neewahhayla71.webp'), filename: 'neewahhayla71.webp')
 u.save
 
 videos.map do |v|  
-    Video.create(title: v['name'] , thumbnail_url: v['thumbnail'], video_url: v['webm']['480'], user: u)
+    Video.create(title: v['name'] , video_url: v['webm']['480'], user: u)
  end
 
  pick_random_video = Video.all.sample 

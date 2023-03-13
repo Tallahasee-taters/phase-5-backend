@@ -4,7 +4,7 @@ class Friendship < ApplicationRecord
 
   validates :status, inclusion: {in: ["pending", "accepted", "rejected"], message: "%{value} has to be one of pending, accepted, or rejected"}
 
-  scope :pending, -> {where("staus = ?", "pending")}
-  scope :accepted, -> {where("staus = ?", "accepted")}
-  scope :rejected, -> {where("staus = ?", "rejected")}
+  scope :pending, -> {where("status = ?", "pending")}
+  scope :accepted, -> {where("status = ?", "accepted")}
+  scope :rejected, -> {where("status = ?", "rejected")}
 end

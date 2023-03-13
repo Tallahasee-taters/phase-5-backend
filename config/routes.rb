@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :friendships, only: [:create, :destroy]
+      delete '/friendships/remove', to: 'friendships#remove'
+      resources :friendships, only: [:create, :update, :destroy]
       resources :video_posts, only: [:index, :show, :create, :update, :destroy]
       resources :comments, only: [:index, :show, :create, :update, :destroy]
       resources :videos, only: [:index, :show, :update, :create, :destroy]
