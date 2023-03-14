@@ -5,8 +5,8 @@ Rails.application.routes.draw do
       resources :friendships, only: [:create, :update, :destroy]
       resources :video_posts, only: [:index, :show, :create, :update, :destroy]
       resources :comments, only: [:index, :show, :create, :update, :destroy]
-      resources :videos, only: [:index, :show, :update, :create, :destroy]
-      resources :users, only: [:index, :update, :destroy, :create, :show]
+      resources :videos
+      resources :users
       post '/login', to: 'sessions#login'
       delete 'logout', to: 'sessions#logout'
       get '/authorized_user', to: 'users#show'

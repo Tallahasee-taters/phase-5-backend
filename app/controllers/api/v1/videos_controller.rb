@@ -1,26 +1,35 @@
 class Api::V1::VideosController < Api::V1::ApplicationController
-
+    before_action :find_video, only: [:update, :destroy, :show]
     def index
         render json: Video.all, status: 200
     end
 
     def show
-        video = Video.find(params[:id])
-        render json: video, status: 200
+        render json: @video, status: 200
     end
 
     def create 
-        render json: Video.create!(video_params), status: :created
+        render json: @user.videos.create!(video_params), status: :created
      end
  
      def update
-         render json: @video.update!(video_params), status: 200
+        if @video.user == @user
+            params[:user_id] = @user.id
+            @video.update!(video_params)
+            render json: @video, status: 202
+        else 
+            render json: {error: "Not authorized"}, status: :unauthorized
+       end
      end
  
-     def destroy
-         @video.destroy
-         head :no_content
-     end
+     def destroy 
+        if @video.user == @user
+             @video.destroy
+             head :no_content
+        else 
+             render json: {error: "Not authorized"}, status: :unauthorized
+        end
+    end
  
      private 
  
@@ -29,6 +38,6 @@ class Api::V1::VideosController < Api::V1::ApplicationController
      end
  
      def video_params
-         params.permit(:header, :user_id, :video_id, :comment_id) 
+         params.permit(:title, :user_id, :video_url, :comment_id) 
      end
 end

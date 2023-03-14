@@ -16,7 +16,8 @@ class Api::V1::UsersController < Api::V1::ApplicationController
     end
 
     def update 
-        render json: @user.update!(user_params), status: 200
+        @user.update!(user_params)
+        render json: @user, status: 202
     end
 
     def destroy
